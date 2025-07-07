@@ -1,8 +1,11 @@
 import Footer from "../../common/Footer";
 // import Header from "../../common/Header";
 import "./welcome.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Welcome() {
+  const navigate = useNavigate();
+
   return (
     <div
       className="position-relative"
@@ -83,10 +86,39 @@ export default function Welcome() {
       <div className="content" style={{ marginTop: 0, flex: 1 }}>
         {" "}
         {/* No margin-top for no spaces */}
-        <a href="/create" className="fs-5">
-          {" "}
-          تسجيل عقد طالب{" "}
-        </a>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px", alignItems: "center" }}>
+          <a href="/create" className="fs-5" style={{ textDecoration: "none", color: "inherit" }}>
+            {" "}
+            تسجيل عقد طالب{" "}
+          </a>
+          <button
+            onClick={() => navigate("/loginforadmin")}
+            style={{
+              backgroundColor: "#0B3D2E",
+              border: "none",
+              color: "white",
+              padding: "8px 20px",
+              borderRadius: "5px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              lineHeight: "1.5",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "40px",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.backgroundColor = "#0a2d23";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.backgroundColor = "#0B3D2E";
+            }}
+          >
+            تسجيل الدخول
+          </button>
+        </div>
         <hr style={{ margin: "16px 0" }} />
       </div>
 
