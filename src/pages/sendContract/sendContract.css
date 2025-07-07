@@ -1,0 +1,65 @@
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Container for buttons */
+.button-container {
+  width: 80%;
+  margin: 10px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 50px; /* ✅ Adds margin between buttons */
+}
+
+/* General Button Styling */
+.custom-button {
+  width: 30%;
+  padding: 15px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Hover Effect */
+.custom-button:hover {
+  transform: scale(1.05);
+}
+
+/* Email Button */
+.email-button {
+  background-color: #28a745;
+}
+
+.email-button.loading {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  background-color: #25d366;
+}
+
+.whatsapp-button.loading {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Cairo';
+  src: url('/public/assets/fonts/Cairo-SemiBold-3_2.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('/public/assets/fonts/Cairo-Bold.ttf') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+:root{
+  --main-color: #073d30;
+  --primary-color: #0d6efd;
+  --delete-color: #dc3545;
+  --gray-color: #6c757d;
+  --green-color: #198754;
+}
+
+*, *::before, *::after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  text-transform: none;
+  color: inherit;
+}
+ul{
+  list-style: none;
+}
+
+/* Apply the font globally or to specific elements */
+body {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* custom width */
+.w-15{
+  width: 15%;
+}
+.w-20{
+  width: 20%;
+}
+.w-35{
+  width: 35%;
+}
+.w-40{
+  width: 40%;
+}
+.w-45{
+  width: 45%;
+}
