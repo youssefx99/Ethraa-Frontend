@@ -12,6 +12,8 @@ const Students = () => {
   const [tableData, setTableData] = useState([]);
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isPrinting, setIsPrinting] = useState(false);
+  const [printingContractId, setPrintingContractId] = useState(null);
   const navigate = useNavigate();
 
   // Check authentication and get user role
@@ -117,12 +119,14 @@ const Students = () => {
 
   const handlePrint = async (id) => {
     try {
+      // Show floating loader
+      setIsPrinting(true);
+      setPrintingContractId(id);
 
       const response = await fetch(`${API_URL2}/api/admin/print/${id}`, {
         method: "GET",
         credentials: "include", // Include cookies for authentication
       });
-
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -145,6 +149,10 @@ const Students = () => {
     } catch (error) {
       console.error("Error downloading contract:", error);
       alert(`Failed to download the contract. Error: ${error.message}`);
+    } finally {
+      // Hide floating loader
+      setIsPrinting(false);
+      setPrintingContractId(null);
     }
   };
 
@@ -297,6 +305,7 @@ const Students = () => {
                       <button
                         onClick={() => handlePrint(student._id)}
                         className="btn btn-primary"
+                        disabled={isPrinting}
                         style={{
                           margin: "1px",
                           width: "90px",
@@ -321,6 +330,51 @@ const Students = () => {
           </table>
         </div>
       </div>
+
+      {/* Floating Print Loader */}
+      {isPrinting && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "10px",
+              padding: "30px",
+              textAlign: "center",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+              maxWidth: "400px",
+              width: "90%",
+            }}
+          >
+            <div className="spinner-border text-primary mb-3" role="status" style={{ width: "3rem", height: "3rem" }}>
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <h5 className="mb-2" style={{ color: "#0B3D2E" }}>
+              جاري إنشاء العقد...
+            </h5>
+            <p className="text-muted mb-0">
+              يرجى الانتظار بينما نقوم بإنشاء وتحميل العقد
+            </p>
+            {printingContractId && (
+              <small className="text-muted d-block mt-2">
+                رقم العقد: {printingContractId}
+              </small>
+            )}
+          </div>
+        </div>
+      )}
 
       <Footer />
     </>
